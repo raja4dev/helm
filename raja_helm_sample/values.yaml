@@ -1,0 +1,25 @@
+#Hello app Details 
+hello:
+  name: hello
+  image: gcr.io/google-samples/hello-app:2.0
+  repository: nginx
+#Printer app Details 
+printer: 
+  name: zone-printer
+  image: gcr.io/google-samples/zone-printer:0.2
+  repository: nginx
+#service Details 
+service:
+ port: 80
+ containerPort: 8080
+ targetPort: 8080
+
+secrets:
+  username: admin
+  password: mysecretpassword
+
+  
+favorite:
+ drink: coffe
+ food: burger
+foo: footest 

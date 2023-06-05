@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.hello.name }}-deployment
+  labels:
+    releaserevsion: "{{ .Release.Revision }}"
+    releasename: "{{ .Release.Name }}"
+    releasenamespace: "{{ .Release.Namespace }}"
+    chartname: "{{ .Chart.Name }}"
+    chartversion: "{{ .Chart.Version }}"
+    capabailitesKubeversion: "{{ .Capabilities.KubeVersion }}"  
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.hello.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.hello.name }}
+    spec:
+      containers:
+      - name: {{ .Values.hello.name }}
+        image: {{ .Values.hello.image }}
+        ports:
+        - containerPort: {{ .Values.service.containerPort }}

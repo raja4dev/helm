@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.printer.name }}-deployment
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.printer.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.printer.name }}
+    spec:
+      containers:
+      - name: {{ .Values.printer.name }}
+        image: {{ .Values.printer.image }}
+        env:
+          - name: USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: myapp-secrets
+                key: username
+          - name: PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: myapp-secrets
+                key: password        
+        ports:
+        - containerPort: {{ .Values.service.containerPort }}

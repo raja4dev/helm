@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  myvalue: "Hello World"
+  drink: {{ quote .Values.favorite.drink }}
+  food: {{ quote .Values.favorite.food }}
+  drink_pipe: {{ .Values.favorite.drink | quote }}
+  food_pipe: {{ .Values.favorite.food | quote }}
+  food_pipe_upper: {{ .Values.favorite.food | quote | upper }}  
+  food_pipe_lower: {{ .Values.favorite.food | quote | lower }}    
+  drink_repeat: {{ .Values.favorite.drink | repeat 5 | quote }}
+  drink_default: {{ .Values.favorite.drink | default "tea" | quote }}
+  foo_required: {{ required "A valid foo is required!" .Values.foo }}
+
