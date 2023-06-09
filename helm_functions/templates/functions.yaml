@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+  lables:
+data:
+  myvalue: "Hello World"
+  who: {{ required "A valid .Values.who entry required!" .Values.who }}
+  drink: {{  .Values.favorite.drink | repeat  5 | quote | upper }}
+  food: {{ quote .Values.favorite.food  | lower }}
+  city: {{.Values.favorite.city | default "Bangalore"}}
