@@ -1,0 +1,6 @@
+configfilename: application.proprties
+env: dev
+imagename: henry:nginx
+
+hpa:
+  enabled: false

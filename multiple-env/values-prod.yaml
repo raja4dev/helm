@@ -1,0 +1,9 @@
+configfilename: application.proprties
+env: prod
+imagename: nginx
+
+hpa:
+  enabled: true
+  max: 10
+  min: 4
+  utilization: 60
